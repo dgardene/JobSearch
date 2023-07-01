@@ -21,6 +21,7 @@ const useFetch = (endpoint, query) => {
 
   const fetchData = async () => {
     setIsLoading(true);
+
     try {
       const response = await axios.request(options);
 
@@ -28,11 +29,12 @@ const useFetch = (endpoint, query) => {
       setIsLoading(false);
     } catch (error) {
       setError(error);
-      alert("There is an error");
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -41,6 +43,7 @@ const useFetch = (endpoint, query) => {
     setIsLoading(true);
     fetchData();
   };
+
   return { data, isLoading, error, refetch };
 };
 
